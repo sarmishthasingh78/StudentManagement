@@ -74,7 +74,7 @@ public class StudentService {
             studentRepository.save(existingStudent);
             return "Data is updated successfully";
         } else {
-            return "Data not found";
+            return "This student Id or name not found ";
         }
     }
 }
