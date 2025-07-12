@@ -41,27 +41,28 @@ public class StudentService {
             return "Student not found or already deleted";
         }
     }
-    public String insertData(@RequestBody List<Students> students){
+
+    public String insertData(@RequestBody List<Students> students) {
         List<Students> filtred = new ArrayList<>();
-        for(Students std:students){
-            if(std.getId()==null){
+        for (Students std : students) {
+            if (std.getId() == null) {
                 std.setId(UUID.randomUUID().toString());
                 filtred.add(std);
             }
         }
-         studentRepository.saveAll(filtred);
-       
-                return "Data is insterted succesully";
+        studentRepository.saveAll(filtred);
+
+        return "Data is insterted succesully";
     }
 
-    public String Data(@RequestBody Students students){
-        if(students.getId()==null){
+    public String Data(@RequestBody Students students) {
+        if (students.getId() == null) {
             students.setId(UUID.randomUUID().toString());
             studentRepository.save(students);
         }
         return "Success";
 
-   }
+    }
 
     public String updateDate(String id, String name, Students updatedData) {
         Students existingStudent = studentRepository.findByIdAndName(id, name);
@@ -77,4 +78,5 @@ public class StudentService {
             return "This student Id or name not found ";
         }
     }
+
 }
